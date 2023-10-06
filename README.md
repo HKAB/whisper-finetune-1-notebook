@@ -1,4 +1,18 @@
 
+---
+language: 
+  - vi
+thumbnail: "url to a thumbnail used in social sharing"
+tags:
+- automatic-speech-recognition
+- whisper
+license: mit
+datasets:
+- google/fleurs
+metrics:
+- Unnormalized WER
+---
+
 # Whisper Finetune 1 Notebook
 
 In this experiment, Whisper (base) is finetuned on VinBigData 100h dataset, but with special pre-processing:
@@ -10,6 +24,23 @@ As state in the [paper](https://arxiv.org/pdf/2212.04356.pdf):
 > Recent research has shown that training on datasets of mixed human and machine-generated data can significantly impair the performance of translation systems (Ghorbani et al., 2021). In order to avoid learning “transcript-ese”, we developed many heuristics to detect and remove machine-generated transcripts from the training datase
 
 Whisper output is already in written form, and we would want to keep this ability by doing the last 2 preprocessing step. **However, the result is not perfect**.
+
+## Usage
+```
+from transformers import WhisperProcessor, WhisperForConditionalGeneration
+
+model_trained = WhisperForConditionalGeneration.from_pretrained('hkab/whisper-base-vietnamese-finetuned')
+processor = WhisperProcessor.from_pretrained("hkab/whisper-base-vietnamese-finetuned")
+
+forced_decoder_ids = processor.get_decoder_prompt_ids(language="vi", task="transcribe")
+
+input_speech, rate = librosa.load('/path/to/audio.wav', sr=16000)
+input_features = processor(input_speech, sampling_rate=rate, return_tensors="pt").input_features
+
+predicted_ids = model_trained.generate(input_features, forced_decoder_ids=forced_decoder_ids)
+
+print(f'Prediction: {processor.batch_decode(predicted_ids, skip_special_tokens=True)}')
+```
 
 
 ## Installation
