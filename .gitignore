@@ -179,3 +179,4 @@ dataset_hf_fleurs/
 dataset_hf_vin100h/
 pretrain_base/
 tmp_trainer/
+whisper-base-vietnamese-finetuned/

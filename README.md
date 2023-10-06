@@ -1,18 +1,3 @@
-
----
-language: 
-  - vi
-thumbnail: "url to a thumbnail used in social sharing"
-tags:
-- automatic-speech-recognition
-- whisper
-license: mit
-datasets:
-- google/fleurs
-metrics:
-- Unnormalized WER
----
-
 # Whisper Finetune 1 Notebook
 
 In this experiment, Whisper (base) is finetuned on VinBigData 100h dataset, but with special pre-processing:
@@ -26,7 +11,7 @@ As state in the [paper](https://arxiv.org/pdf/2212.04356.pdf):
 Whisper output is already in written form, and we would want to keep this ability by doing the last 2 preprocessing step. **However, the result is not perfect**.
 
 ## Usage
-```
+```python
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
 
 model_trained = WhisperForConditionalGeneration.from_pretrained('hkab/whisper-base-vietnamese-finetuned')
@@ -70,6 +55,3 @@ num_epochs = 10
 learning_rate=5e-4
 warmup_steps=2000,
 ```
-## Checkpoint to play with
-
-Updating...
