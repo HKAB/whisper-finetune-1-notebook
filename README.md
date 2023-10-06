@@ -1,9 +1,9 @@
 # Whisper Finetune 1 Notebook
 
 In this experiment, Whisper (base) is finetuned on VinBigData 100h dataset, but with special pre-processing:
-- Remove sentence with `<unk>` token (The data is clean and good compare to other open source Vietnamese data, but the transcript is the output of a larger model from Vinbigdata - Kaldi I think. I don't know if it is later verified by human but a few of them still contain `<unk>` token)
-- Punctuation and Capitalization restoration by [dragonSwing/xlm-roberta-capu](https://huggingface.co/dragonSwing/xlm-roberta-capu)
-- Spoken to written transcript [nguyenvulebinh/spoken-norm](https://github.com/nguyenvulebinh/spoken-norm)
+- Remove sentence with `<unk>` token (The data is clean compare to other open source Vietnamese data, but transcripts are outputs from a large and very good model from Vinbigdata - Kaldi I think. I don't know if they are later verified by human but a few of them still contain `<unk>` tokens)
+- Punctuation and capitalization restoration by [dragonSwing/xlm-roberta-capu](https://huggingface.co/dragonSwing/xlm-roberta-capu)
+- Transcript spoken to written [nguyenvulebinh/spoken-norm](https://github.com/nguyenvulebinh/spoken-norm)
 
 As state in the [paper](https://arxiv.org/pdf/2212.04356.pdf):
 > Recent research has shown that training on datasets of mixed human and machine-generated data can significantly impair the performance of translation systems (Ghorbani et al., 2021). In order to avoid learning “transcript-ese”, we developed many heuristics to detect and remove machine-generated transcripts from the training datase
